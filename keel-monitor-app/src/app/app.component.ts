@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AzimuthThrusterConfiguration, AzimuthThrusterFactory, CogConfiguration, CogFactory, InstrumentFactory, RudderConfiguration, RudderFactory, SpeedometerConfiguration, SpeedometerFactory } from './factory/instruments-factory';
 import { Theme } from './models/theme';
+import { ConfigFetcherService } from './services/config-fetcher.service';
 import { AzimuthThruster } from './simulators/azimuth-thruster';
 import { CourseOverGround } from './simulators/cog';
 import { Rudder } from './simulators/rudder';
@@ -17,14 +18,17 @@ export class AppComponent implements OnInit {
   rudder: Rudder;
   cog: CourseOverGround;
 
+  constructor(private configService: ConfigFetcherService) { }
+
   ngOnInit() {
 
-    this.azimuthThruser = new AzimuthThruster(InstrumentFactory.getInstrument('azimuth-thruster') as AzimuthThrusterConfiguration);
-    this.speedoMeter = new Speedometer(InstrumentFactory.getInstrument('speedometer') as SpeedometerConfiguration);
-    this.rudder = new Rudder(InstrumentFactory.getInstrument('rudder') as RudderConfiguration);
-    this.cog = new CourseOverGround(InstrumentFactory.getInstrument('cog') as CogConfiguration);
-
-    this.startSimulation();
+    this.configService.fetchInstrumentsConfig().subscribe((config) => {
+      this.azimuthThruser = new AzimuthThruster(InstrumentFactory.getInstrument('azimuth-thruster', config) as AzimuthThrusterConfiguration);
+      this.speedoMeter = new Speedometer(InstrumentFactory.getInstrument('speedometer', config) as SpeedometerConfiguration);
+      this.rudder = new Rudder(InstrumentFactory.getInstrument('rudder', config) as RudderConfiguration);
+      this.cog = new CourseOverGround(InstrumentFactory.getInstrument('cog', config) as CogConfiguration);
+      this.startSimulation();
+    });
   }
 
   startSimulation() {

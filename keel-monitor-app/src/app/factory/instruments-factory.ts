@@ -23,57 +23,52 @@ export class RudderConfiguration {
     rudderAngle: Range;
 }
 
+export class Payload {
+    azimuth: AzimuthThrusterConfiguration;
+    speedometer: SpeedometerConfiguration;
+    cog: CogConfiguration;
+    rudder: RudderConfiguration;
+}
+
 export abstract class InstrumentFactory {
 
-    abstract getInstrumentConfiguration();
+    abstract getInstrumentConfiguration(payload: Payload);
 
-    static getInstrument(type: TypeOfInstument): InstrumentConfiguration {
+    static getInstrument(type: TypeOfInstument, payload: Payload): InstrumentConfiguration {
         switch (type) {
             case 'azimuth-thruster':
-                return new AzimuthThrusterFactory().getInstrumentConfiguration()
+                return new AzimuthThrusterFactory().getInstrumentConfiguration(payload)
             case 'speedometer':
-                return new SpeedometerFactory().getInstrumentConfiguration();
+                return new SpeedometerFactory().getInstrumentConfiguration(payload);
             case 'cog':
-                return new CogFactory().getInstrumentConfiguration();
+                return new CogFactory().getInstrumentConfiguration(payload);
             case 'rudder':
-                return new RudderFactory().getInstrumentConfiguration();
+                return new RudderFactory().getInstrumentConfiguration(payload);
         }
     }
 }
 
 export class AzimuthThrusterFactory extends InstrumentFactory {
 
-    getInstrumentConfiguration(): AzimuthThrusterConfiguration {
-        return {
-            angle: { start: 0, end: 360, frequency: 25, delta: 0.1 },
-            value: { start: 20, end: 50, frequency: 50, delta: 1 },
-            targetAngle: { start: 0, end: 360, frequency: 3000, delta: 25 }
-        }
+    getInstrumentConfiguration(payload: Payload): AzimuthThrusterConfiguration {
+        return payload.azimuth;
     }
 }
 
 export class CogFactory extends InstrumentFactory {
-    getInstrumentConfiguration(): CogConfiguration {
-        return {
-            heading: { start: 260, end: 290, frequency: 40, delta: 0.1 },
-            courseOverGround: { start: 285, end: 295, frequency: 50, delta: 0.1 }
-        }
+    getInstrumentConfiguration(payload: Payload): CogConfiguration {
+        return payload.cog;
     }
 }
 
 export class SpeedometerFactory extends InstrumentFactory {
-    getInstrumentConfiguration(): SpeedometerConfiguration {
-        return {
-            value: { start: 5, end: 15, frequency: 80, delta: 0.1 }
-        }
+    getInstrumentConfiguration(payload: Payload): SpeedometerConfiguration {
+        return payload.speedometer;
     }
 }
 
 export class RudderFactory extends InstrumentFactory {
-    getInstrumentConfiguration(): RudderConfiguration {
-        return {
-            rudderSetPointAngle: { start: -50, end: 50, frequency: 1000, delta: 5 },
-            rudderAngle: { start: -50, end: 50, frequency: 1200, delta: 5 }
-        }
+    getInstrumentConfiguration(payload: Payload): RudderConfiguration {
+        return payload.rudder;
     }
 }

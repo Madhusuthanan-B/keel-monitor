@@ -16,13 +16,16 @@
     target="50" [targetAngle]="azimuthThruser.targetAngle" thrusterWidth="REGULAR" [value]="azimuthThruser.value">
   </ob-azimuth-large>
 
-  <ob-azimuth-medium class="az-md" [angle]="azimuthThruser.angle" [showPortStarboard]="azimuthThruser.showPortStarboard"
-    [showSetPointAngle]="azimuthThruser.showSetPointAngle" [showSetPointValue]="azimuthThruser.showSetPointValue"
-    target="50" [targetAngle]="azimuthThruser.targetAngle" thrusterWidth="REGULAR" [value]="azimuthThruser.value">
+  <ob-azimuth-medium class="size-std" [angle]="azimuthThruser.angle"
+    [showPortStarboard]="azimuthThruser.showPortStarboard" [showSetPointAngle]="azimuthThruser.showSetPointAngle"
+    [showSetPointValue]="azimuthThruser.showSetPointValue" target="50" [targetAngle]="azimuthThruser.targetAngle"
+    thrusterWidth="REGULAR" [value]="azimuthThruser.value">
   </ob-azimuth-medium>
 
   <ob-azimuth-small class="az-sm" [angle]="azimuthThruser.angle" [value]="azimuthThruser.value">
   </ob-azimuth-small>
+  <ob-speedometer-medium class="size-std" [value]="speedoMeter.value"></ob-speedometer-medium>
+
 </section>
 
 

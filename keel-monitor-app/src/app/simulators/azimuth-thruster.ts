@@ -32,9 +32,7 @@ export class AzimuthThruster extends Simulator {
     }
 
     stopSimulation() {
-        Object.keys(this.timers).forEach((timer) => {
-            clearInterval(this.timers[timer]);
-        });
+        this.clearTimers();
     }
 
     private simulateAngle(range: Range) {

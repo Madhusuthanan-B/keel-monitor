@@ -1,7 +1,7 @@
-import { Simulator } from './base-simulator';
 import { Range } from '../models/range';
+import { Instrument } from './instrument';
 
-export class CourseOverGround extends Simulator {
+export class CourseOverGround extends Instrument {
     heading: number;
     courseOverGround: number;
     northUp: boolean;

@@ -11,10 +11,13 @@
 <button (click)="stopSimulation()">Stop Simulation</button>
 
 <section class="thrusters">
-  <!-- <ob-azimuth-large class="az-lg" [angle]="azimuthThruser.angle" [showPortStarboard]="azimuthThruser.showPortStarboard"
+  <ob-hdg-large class="size-lg" [courseOverGround]="cog.courseOverGround" [heading]="cog.heading" [northUp]="true">
+  </ob-hdg-large>
+
+  <ob-azimuth-large class="size-lg" [angle]="azimuthThruser.angle" [showPortStarboard]="azimuthThruser.showPortStarboard"
     [showSetPointAngle]="azimuthThruser.showSetPointAngle" [showSetPointValue]="azimuthThruser.showSetPointValue"
     target="50" [targetAngle]="azimuthThruser.targetAngle" thrusterWidth="REGULAR" [value]="azimuthThruser.value">
-  </ob-azimuth-large> -->
+  </ob-azimuth-large>
 
   <ob-azimuth-medium class="size-std" [angle]="azimuthThruser.angle"
     [showPortStarboard]="azimuthThruser.showPortStarboard" [showSetPointAngle]="azimuthThruser.showSetPointAngle"
@@ -22,24 +25,14 @@
     thrusterWidth="REGULAR" [value]="azimuthThruser.value">
   </ob-azimuth-medium>
 
-  <ob-azimuth-small class="az-sm" [angle]="azimuthThruser.angle" [value]="azimuthThruser.value">
+  <ob-azimuth-small class="size-std" [angle]="azimuthThruser.angle" [value]="azimuthThruser.value">
   </ob-azimuth-small>
 
   <ob-speedometer-medium class="size-std" [value]="speedoMeter.value"></ob-speedometer-medium>
 
-  <ob-rudder-medium class="size-std" [rudderAngle]="rudder.rudderAngle" class="mini"
+  <ob-rudder-medium class="size-std" [rudderAngle]="rudder.rudderAngle"
     [rudderSetPointAngle]="rudder.rudderSetPointAngle" clipAngle="60" showPortStarboard="false" showSetPoint="true">
   </ob-rudder-medium>
 
-  
-
-  <!-- <ob-rudder-medium class="size-std">
-    [rudderAngle]="40"
-    [rudderSetPointAngle]="rudder.rudderSetPointAngle"
-    [clipAngle]="90"
-  </ob-rudder-medium> -->
-
 
 </section>
-
-<ob-hdg-large class="size-std" [courseOverGround]="cog.courseOverGround" [heading]="cog.heading" [northUp]="true"></ob-hdg-large>

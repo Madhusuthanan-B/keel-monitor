@@ -1,7 +1,7 @@
 import { Range } from '../models/range';
-import { Simulator } from './base-simulator';
+import { Instrument } from './instrument';
 
-export class AzimuthThruster extends Simulator {
+export class AzimuthThruster extends Instrument {
     targetAngle: number;
     angle: number;
     value: number;

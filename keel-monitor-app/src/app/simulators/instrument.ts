@@ -1,7 +1,7 @@
 import { Observable, Subscription } from 'rxjs';
 import { Range } from '../models/range';
 
-export abstract class Simulator {
+export abstract class Instrument {
     abstract startSimulation(): void;
     private subscriptions: Map<string, Subscription> = new Map();
 

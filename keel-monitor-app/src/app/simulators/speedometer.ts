@@ -1,7 +1,8 @@
-import { Simulator } from './base-simulator';
-import { Range } from '../models/range';
 
-export class Speedometer extends Simulator {
+import { Range } from '../models/range';
+import { Instrument } from './instrument';
+
+export class Speedometer extends Instrument {
     value: number;
 
     constructor() {

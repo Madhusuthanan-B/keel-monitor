@@ -1,7 +1,7 @@
-import { Simulator } from './base-simulator';
 import { Range } from '../models/range';
+import { Instrument } from './instrument';
 
-export class Rudder extends Simulator {
+export class Rudder extends Instrument {
     rudderSetPointAngle: number;
     rudderAngle: number;
 

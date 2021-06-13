@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Theme } from './models/theme';
 import { AzimuthThruster } from './simulators/azimuth-thruster';
 import { CourseOverGround } from './simulators/cog';
+import { Instrument } from './simulators/instrument';
 import { Rudder } from './simulators/rudder';
 import { Speedometer } from './simulators/speedometer';
 

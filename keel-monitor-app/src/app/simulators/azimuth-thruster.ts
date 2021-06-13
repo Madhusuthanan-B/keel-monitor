@@ -1,6 +1,7 @@
 import { Range } from '../models/range';
+import { Simulator } from './base-simulator';
 
-export class AzimuthThruster {
+export class AzimuthThruster extends Simulator {
     targetAngle: number;
     angle: number;
     value: number;
@@ -10,6 +11,7 @@ export class AzimuthThruster {
     showSetPointAngle: boolean;
 
     constructor() {
+        super();
         this.target = 0;
         this.value = 0;
         this.angle = 0;
@@ -19,9 +21,15 @@ export class AzimuthThruster {
         this.showSetPointAngle = false;
     }
 
-    simulate() {
+    startSimulation() {
         this.simulateAngle({ start: 0, end: 360, frequency: 25, delta: 0.1 });
-        this.simulateValue({start: 22, end: 80, frequency: 50, delta: 1});
+        this.simulateValue({ start: 22, end: 80, frequency: 50, delta: 1 });
+    }
+
+    stopSimulation() {
+        Object.keys(this.timers).forEach((timer) => {
+            clearInterval(this.timers[timer]);
+        });
     }
 
     private simulateAngle(range: Range) {
@@ -29,15 +37,16 @@ export class AzimuthThruster {
         let forward = true;
         const timer = setInterval(() => {
 
-            if(forward) {
+            if (forward) {
                 this.angle = this.angle + range.delta;
                 forward = !(this.angle > range.end);
             }
-             else {
-                this.angle = this.angle - range.delta; 
+            else {
+                this.angle = this.angle - range.delta;
                 forward = this.angle === range.start;
             }
-        }, range.frequency)
+        }, range.frequency);
+        this.timers['angle'] = timer;
     }
 
     private simulateValue(range: Range) {
@@ -45,14 +54,15 @@ export class AzimuthThruster {
         let forward = true;
         const timer = setInterval(() => {
 
-            if(forward) {
+            if (forward) {
                 this.value = this.value + range.delta;
                 forward = !(this.value > range.end);
             }
-             else {
-                this.value = this.value - range.delta; 
+            else {
+                this.value = this.value - range.delta;
                 forward = this.value === range.start;
             }
-        }, range.frequency)
+        }, range.frequency);
+        this.timers['value'] = timer;
     }
 }

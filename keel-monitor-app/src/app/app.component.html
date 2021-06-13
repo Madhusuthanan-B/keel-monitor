@@ -5,5 +5,18 @@
 <button (click)="applyTheme('dusk')">Dusk</button>
 <button (click)="applyTheme('night')">Night</button>
 
+
+<ob-azimuth-large class="azimuth"
+  [angle]="azimuthThruser.angle"
+  [showPortStarboard]="azimuthThruser.showPortStarboard"
+  [showSetPointAngle]="azimuthThruser.showSetPointAngle"
+  [showSetPointValue]="azimuthThruser.showSetPointValue"
+  [target]="azimuthThruser.target"
+  [targetAngle]="azimuthThruser.targetAngle"
+  thrusterWidth="REGULAR"
+  [value]="azimuthThruser.value"
+>
+</ob-azimuth-large>
+
 <ob-bar-horizontal-medium class="mini" range="100" value="50"></ob-bar-horizontal-medium>
 <ob-rudder-medium rudderAngle="5" class="mini"  rudderSetPointAngle="3" clipAngle="60" showPortStarboard="false" showSetPoint="true"></ob-rudder-medium>

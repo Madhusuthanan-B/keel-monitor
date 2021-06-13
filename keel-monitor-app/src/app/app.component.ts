@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AzimuthThrusterFactory, CogFactory, RudderFactory, SpeedometerFactory } from './factory/instruments-factory';
+import { AzimuthThrusterConfiguration, AzimuthThrusterFactory, CogConfiguration, CogFactory, InstrumentFactory, RudderConfiguration, RudderFactory, SpeedometerConfiguration, SpeedometerFactory } from './factory/instruments-factory';
 import { Theme } from './models/theme';
 import { AzimuthThruster } from './simulators/azimuth-thruster';
 import { CourseOverGround } from './simulators/cog';
@@ -12,7 +12,6 @@ import { Speedometer } from './simulators/speedometer';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'keel-monitor-app';
   azimuthThruser: AzimuthThruster;
   speedoMeter: Speedometer;
   rudder: Rudder;
@@ -20,10 +19,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.azimuthThruser = new AzimuthThruster(AzimuthThrusterFactory.getInstrumentConfiguration());
-    this.speedoMeter = new Speedometer(SpeedometerFactory.getInstrumentConfiguration());
-    this.rudder = new Rudder(RudderFactory.getInstrumentConfiguration());
-    this.cog = new CourseOverGround(CogFactory.getInstrumentConfiguration());
+    this.azimuthThruser = new AzimuthThruster(InstrumentFactory.getInstrument('azimuth-thruster') as AzimuthThrusterConfiguration);
+    this.speedoMeter = new Speedometer(InstrumentFactory.getInstrument('speedometer') as SpeedometerConfiguration);
+    this.rudder = new Rudder(InstrumentFactory.getInstrument('rudder') as RudderConfiguration);
+    this.cog = new CourseOverGround(InstrumentFactory.getInstrument('cog') as CogConfiguration);
 
     this.startSimulation();
   }

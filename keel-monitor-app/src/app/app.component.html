@@ -9,17 +9,23 @@
 
 <button (click)="startSimulation()">Start Simulation</button>
 <button (click)="stopSimulation()">Stop Simulation</button>
-<ob-azimuth-large class="azimuth"
-  [angle]="azimuthThruser.angle"
-  [showPortStarboard]="azimuthThruser.showPortStarboard"
-  [showSetPointAngle]="azimuthThruser.showSetPointAngle"
-  [showSetPointValue]="azimuthThruser.showSetPointValue"
-  target="50"
-  [targetAngle]="azimuthThruser.targetAngle"
-  thrusterWidth="REGULAR"
-  [value]="azimuthThruser.value"
->
-</ob-azimuth-large>
+
+<section class="thrusters">
+  <ob-azimuth-large class="az-lg" [angle]="azimuthThruser.angle" [showPortStarboard]="azimuthThruser.showPortStarboard"
+    [showSetPointAngle]="azimuthThruser.showSetPointAngle" [showSetPointValue]="azimuthThruser.showSetPointValue"
+    target="50" [targetAngle]="azimuthThruser.targetAngle" thrusterWidth="REGULAR" [value]="azimuthThruser.value">
+  </ob-azimuth-large>
+
+  <ob-azimuth-medium class="az-md" [angle]="azimuthThruser.angle" [showPortStarboard]="azimuthThruser.showPortStarboard"
+    [showSetPointAngle]="azimuthThruser.showSetPointAngle" [showSetPointValue]="azimuthThruser.showSetPointValue"
+    target="50" [targetAngle]="azimuthThruser.targetAngle" thrusterWidth="REGULAR" [value]="azimuthThruser.value">
+  </ob-azimuth-medium>
+
+  <ob-azimuth-small class="az-sm" [angle]="azimuthThruser.angle" [value]="azimuthThruser.value">
+  </ob-azimuth-small>
+</section>
+
 
 <ob-bar-horizontal-medium class="mini" range="100" value="50"></ob-bar-horizontal-medium>
-<ob-rudder-medium rudderAngle="5" class="mini"  rudderSetPointAngle="3" clipAngle="60" showPortStarboard="false" showSetPoint="true"></ob-rudder-medium>
+<ob-rudder-medium rudderAngle="5" class="mini" rudderSetPointAngle="3" clipAngle="60" showPortStarboard="false"
+  showSetPoint="true"></ob-rudder-medium>

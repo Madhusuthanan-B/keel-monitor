@@ -3,7 +3,24 @@
     width: 20%;
 }
 
-.azimuth {
-    height: 512px;
-    width: 512px;
+.thrusters {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .az-lg {
+        height: 512px;
+        width: 512px;
+    }
+
+    .az-md {
+        height: 250px;
+        width: 250px;
+    }
+
+    .az-sm {
+        height: 100px;
+        width: 100px;
+    }
 }

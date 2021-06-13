@@ -1,3 +1,4 @@
+import { AzimuthThrusterConfiguration } from '../factory/instruments-factory';
 import { Range } from '../models/range';
 import { Instrument } from './instrument';
 
@@ -10,7 +11,7 @@ export class AzimuthThruster extends Instrument {
     showSetPointValue: boolean;
     showSetPointAngle: boolean;
 
-    constructor() {
+    constructor(private config: AzimuthThrusterConfiguration) {
         super();
         this.target = 0;
         this.value = 0;
@@ -26,9 +27,9 @@ export class AzimuthThruster extends Instrument {
             this.stopSimulation();
         }
         this.isSimulationActive = true;
-        this.simulateAngle({ start: 0, end: 360, frequency: 25, delta: 0.1 });
-        this.simulateValue({ start: 20, end: 50, frequency: 50, delta: 1 });
-        this.simulateTargetAngle({ start: 0, end: 360, frequency: 3000, delta: 25 });
+        this.simulateAngle(this.config.angle);
+        this.simulateValue(this.config.value);
+        this.simulateTargetAngle(this.config.targetAngle);
     }
 
     private simulateAngle(range: Range) {

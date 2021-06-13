@@ -1,3 +1,4 @@
+import { CogConfiguration } from '../factory/instruments-factory';
 import { Range } from '../models/range';
 import { Instrument } from './instrument';
 
@@ -6,7 +7,7 @@ export class CourseOverGround extends Instrument {
     courseOverGround: number;
     northUp: boolean;
 
-    constructor() {
+    constructor(private config: CogConfiguration) {
         super();
         this.heading = 0;
         this.courseOverGround = 0;
@@ -17,8 +18,8 @@ export class CourseOverGround extends Instrument {
             this.stopSimulation();
         }
         this.isSimulationActive = true;
-        this.simulateHeading({ start: 260, end: 290, frequency: 40, delta: 0.1 });
-        this.simulateCog({ start: 285, end: 295, frequency: 50, delta: 0.1 });
+        this.simulateHeading(this.config.heading);
+        this.simulateCog(this.config.courseOverGround);
     }
 
     private simulateHeading(range: Range) {

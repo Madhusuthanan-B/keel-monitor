@@ -1,11 +1,12 @@
 
+import { SpeedometerConfiguration } from '../factory/instruments-factory';
 import { Range } from '../models/range';
 import { Instrument } from './instrument';
 
 export class Speedometer extends Instrument {
     value: number;
 
-    constructor() {
+    constructor(private config: SpeedometerConfiguration) {
         super();
         this.value = 0;
     }
@@ -15,7 +16,7 @@ export class Speedometer extends Instrument {
             this.stopSimulation();
         }
         this.isSimulationActive = true;
-        this.simulateValue({ start: 5, end: 15, frequency: 80, delta: 0.1 });
+        this.simulateValue(this.config.value);
     }
 
     private simulateValue(range: Range) {

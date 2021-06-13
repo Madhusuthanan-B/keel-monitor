@@ -1,3 +1,4 @@
+import { RudderConfiguration } from '../factory/instruments-factory';
 import { Range } from '../models/range';
 import { Instrument } from './instrument';
 
@@ -5,7 +6,7 @@ export class Rudder extends Instrument {
     rudderSetPointAngle: number;
     rudderAngle: number;
 
-    constructor() {
+    constructor(private config: RudderConfiguration) {
         super();
         this.rudderSetPointAngle = 0;
         this.rudderAngle = 0;
@@ -16,8 +17,8 @@ export class Rudder extends Instrument {
             this.stopSimulation();
         }
         this.isSimulationActive = true;
-        this.simulateSetPoint({ start: -50, end: 50, frequency: 1000, delta: 5 });
-        this.simulateAngle({ start: -50, end: 50, frequency: 1200, delta: 5 });
+        this.simulateSetPoint(this.config.rudderSetPointAngle);
+        this.simulateAngle(this.config.rudderSetPointAngle);
     }
 
     private simulateSetPoint(range: Range) {

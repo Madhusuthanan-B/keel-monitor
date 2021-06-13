@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AzimuthThrusterFactory, CogFactory, RudderFactory, SpeedometerFactory } from './factory/instruments-factory';
 import { Theme } from './models/theme';
 import { AzimuthThruster } from './simulators/azimuth-thruster';
 import { CourseOverGround } from './simulators/cog';
-import { Instrument } from './simulators/instrument';
 import { Rudder } from './simulators/rudder';
 import { Speedometer } from './simulators/speedometer';
 
@@ -19,10 +19,11 @@ export class AppComponent implements OnInit {
   cog: CourseOverGround;
 
   ngOnInit() {
-    this.azimuthThruser = new AzimuthThruster();
-    this.speedoMeter = new Speedometer();
-    this.rudder = new Rudder();
-    this.cog = new CourseOverGround();
+
+    this.azimuthThruser = new AzimuthThruster(AzimuthThrusterFactory.getInstrumentConfiguration());
+    this.speedoMeter = new Speedometer(SpeedometerFactory.getInstrumentConfiguration());
+    this.rudder = new Rudder(RudderFactory.getInstrumentConfiguration());
+    this.cog = new CourseOverGround(CogFactory.getInstrumentConfiguration());
 
     this.startSimulation();
   }

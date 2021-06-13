@@ -1,0 +1,3 @@
+<ng-container *ngFor="let btn of data;">
+    <button (click)="update(btn)" [ngClass]="{'active': btn.isActive}">{{btn.name}}</button>
+</ng-container>

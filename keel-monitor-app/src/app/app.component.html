@@ -2,15 +2,11 @@
 
 <section class="controls">
   <section class="themes">
-    <button (click)="applyTheme('day')">Day</button>
-    <button (click)="applyTheme('bright')">Bright</button>
-    <button (click)="applyTheme('dusk')">Dusk</button>
-    <button (click)="applyTheme('night')">Night</button>
+    <app-button-group [data]="themeButtons" (selectedButton)="handleThemeSelection($event)"></app-button-group>
   </section>
 
   <section class="simulation">
-    <button (click)="startSimulation()">Start Simulation</button>
-    <button (click)="stopSimulation()">Stop Simulation</button>
+    <app-button-group [data]="simulationButtons" (selectedButton)="handleSimulation($event)"></app-button-group>
   </section>
 </section>
 

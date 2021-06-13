@@ -5,10 +5,12 @@ import 'openbridge-web-components';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ButtonGroupComponent } from './button-group/button-group.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ButtonGroupComponent
   ],
   imports: [
     BrowserModule,

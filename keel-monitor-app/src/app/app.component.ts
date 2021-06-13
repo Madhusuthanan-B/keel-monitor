@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { Theme } from './models/theme';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'keel-monitor-app';
-  open = false;
 
-  toggle(event) {
-    this.open = event.detail;
+
+  applyTheme(theme: Theme) {
+    document.documentElement.setAttribute('theme', theme);
   }
 }

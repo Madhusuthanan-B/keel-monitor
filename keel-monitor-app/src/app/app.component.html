@@ -1,5 +1,9 @@
-<h1>Open bridge integration demo</h1>
+<h1>Keel Monitor</h1>
+
+<button (click)="applyTheme('bright')">Bright</button>
+<button (click)="applyTheme('day')">Day</button>
+<button (click)="applyTheme('dusk')">Dusk</button>
+<button (click)="applyTheme('night')">Night</button>
 
 <ob-bar-horizontal-medium class="mini" range="100" value="50"></ob-bar-horizontal-medium>
-<ob-bar-vertical-positive-large class="mini" range="100" value="50"></ob-bar-vertical-positive-large>
 <ob-rudder-medium rudderAngle="5" class="mini"  rudderSetPointAngle="3" clipAngle="60" showPortStarboard="false" showSetPoint="true"></ob-rudder-medium>

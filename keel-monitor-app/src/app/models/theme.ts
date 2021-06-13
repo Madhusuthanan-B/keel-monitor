@@ -1,0 +1,1 @@
+export type Theme = 'bright' | 'day' | 'dusk' | 'night';

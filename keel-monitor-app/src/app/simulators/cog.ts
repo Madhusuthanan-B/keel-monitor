@@ -21,22 +21,14 @@ export class CourseOverGround extends Simulator {
         this.simulateCog({ start: 285, end: 295, frequency: 50, delta: 0.1 });
     }
 
-    stopSimulation(): void {
-        this.clearAllSubscriptions();
-    }
-
     private simulateHeading(range: Range) {
         this.heading = range.start;
-        this.addSubscription('heading', this.rangeTicker(range, this.heading).subscribe((val) => {
-            this.heading = val;
-        }));
+        this.addSubscription('heading', this.rangeTicker(range, this.heading).subscribe(val => this.heading = val));
     }
 
     private simulateCog(range: Range) {
         this.courseOverGround = range.start;
-        this.addSubscription('cog', this.rangeTicker(range, this.courseOverGround).subscribe((val) => {
-            this.courseOverGround = val;
-        }));
+        this.addSubscription('cog', this.rangeTicker(range, this.courseOverGround).subscribe(val => this.courseOverGround = val));
     }
 
 }

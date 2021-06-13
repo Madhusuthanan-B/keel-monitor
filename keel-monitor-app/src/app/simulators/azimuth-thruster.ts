@@ -31,75 +31,18 @@ export class AzimuthThruster extends Simulator {
         this.simulateTargetAngle({ start: 0, end: 360, frequency: 3000, delta: 25 });
     }
 
-    stopSimulation() {
-        this.clearTimers();
-    }
-
     private simulateAngle(range: Range) {
-
-        let forward = true;
-        const timer = setInterval(() => {
-
-            if (forward) {
-                this.angle = this.angle + range.delta;
-                forward = !(this.angle > range.end);
-            }
-            else {
-                this.angle = this.angle - range.delta;
-                forward = this.angle === range.start;
-            }
-        }, range.frequency);
-        this.timers['angle'] = timer;
+        this.angle = range.start;
+        this.addSubscription('angle', this.rangeTicker(range, this.angle).subscribe(val => this.angle = val));
     }
 
     private simulateValue(range: Range) {
-
-        let forward = true;
-        const timer = setInterval(() => {
-
-            if (forward) {
-                this.value = this.value + range.delta;
-                forward = !(this.value > range.end);
-            }
-            else {
-                this.value = this.value - range.delta;
-                forward = this.value === range.start;
-            }
-        }, range.frequency);
-        this.timers['value'] = timer;
-    }
-
-    private simulateTarget(range: Range) {
-
-        let forward = true;
-        const timer = setInterval(() => {
-
-            if (forward) {
-                this.target = this.target + range.delta;
-                forward = !(this.target > range.end);
-            }
-            else {
-                this.target = this.target - range.delta;
-                forward = this.target === range.start;
-            }
-        }, range.frequency);
-        this.timers['target'] = timer;
+        this.value = range.start;
+        this.addSubscription('value', this.rangeTicker(range, this.value).subscribe(val => this.value = val));
     }
 
     private simulateTargetAngle(range: Range) {
-
-        let forward = true;
-        const timer = setInterval(() => {
-
-            if (forward) {
-                this.targetAngle = this.targetAngle + range.delta;
-                forward = !(this.targetAngle > range.end);
-            }
-            else {
-                this.targetAngle = this.targetAngle - range.delta;
-                forward = this.targetAngle === range.start;
-            }
-        }, range.frequency);
-        this.timers['targetAngle'] = timer;
+        this.targetAngle = range.start;
+        this.addSubscription('targetAngle', this.rangeTicker(range, this.targetAngle).subscribe(val => this.targetAngle = val));
     }
 }

@@ -20,41 +20,13 @@ export class Rudder extends Simulator {
         this.simulateAngle({ start: -50, end: 50, frequency: 1200, delta: 5 });
     }
 
-    stopSimulation(): void {
-        this.clearTimers();
-    }
-
     private simulateSetPoint(range: Range) {
-
-        let forward = true;
-        const timer = setInterval(() => {
-
-            if (forward) {
-                this.rudderSetPointAngle = this.rudderSetPointAngle + range.delta;
-                forward = !(this.rudderSetPointAngle > range.end);
-            }
-            else {
-                this.rudderSetPointAngle = this.rudderSetPointAngle - range.delta;
-                forward = this.rudderSetPointAngle === range.start;
-            }
-        }, range.frequency);
-        this.timers['rudderSetPoint'] = timer;
+        this.rudderSetPointAngle = range.start;
+        this.addSubscription('rudderSetPointAngle', this.rangeTicker(range, this.rudderSetPointAngle).subscribe(val => this.rudderSetPointAngle = val));
     }
 
     private simulateAngle(range: Range) {
-
-        let forward = true;
-        const timer = setInterval(() => {
-
-            if (forward) {
-                this.rudderAngle = this.rudderAngle + range.delta;
-                forward = !(this.rudderAngle > range.end);
-            }
-            else {
-                this.rudderAngle = this.rudderAngle - range.delta;
-                forward = this.rudderAngle === range.start;
-            }
-        }, range.frequency);
-        this.timers['rudderAngle'] = timer;
+        this.rudderAngle = range.start;
+        this.addSubscription('rudderAngle', this.rangeTicker(range, this.rudderAngle).subscribe(val => this.rudderAngle = val));
     }
 }

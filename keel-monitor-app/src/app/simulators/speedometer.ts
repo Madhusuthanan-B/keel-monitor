@@ -17,25 +17,8 @@ export class Speedometer extends Simulator {
     }
 
     private simulateValue(range: Range) {
-
-        let forward = true;
-        const timer = setInterval(() => {
-
-            if (forward) {
-                this.value = this.value + range.delta;
-                forward = !(this.value > range.end);
-            }
-            else {
-                this.value = this.value - range.delta;
-                forward = this.value === range.start;
-            }
-        }, range.frequency);
-        this.timers['value'] = timer;
-    }
-
-
-    stopSimulation(): void {
-        this.clearTimers();
+        this.value = range.start;
+        this.addSubscription('value', this.rangeTicker(range, this.value).subscribe(val => this.value = val));
     }
 
 }

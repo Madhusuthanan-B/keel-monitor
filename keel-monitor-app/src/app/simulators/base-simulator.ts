@@ -3,8 +3,11 @@ import { Range } from '../models/range';
 
 export abstract class Simulator {
     abstract startSimulation(): void;
-    abstract stopSimulation(): void;
     private subscriptions: Map<string, Subscription> = new Map();
+
+    stopSimulation(): void {
+        this.clearAllSubscriptions();
+    }
 
     public rangeTicker(range: Range, currentValue: number): Observable<number> {
         return new Observable((observer) => {

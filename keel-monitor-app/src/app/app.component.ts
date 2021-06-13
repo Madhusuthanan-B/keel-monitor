@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import 'web-component-essentials';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'keel-monitor-app';
+  open = false;
+
+  toggle(event) {
+    this.open = event.detail;
+  }
 }

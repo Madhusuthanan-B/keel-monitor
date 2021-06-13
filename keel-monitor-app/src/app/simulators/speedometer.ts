@@ -13,6 +13,7 @@ export class Speedometer extends Simulator {
         if (this.isSimulationActive) {
             this.stopSimulation();
         }
+        this.isSimulationActive = true;
         this.simulateValue({ start: 5, end: 15, frequency: 80, delta: 0.1 });
     }
 

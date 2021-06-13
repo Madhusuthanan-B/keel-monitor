@@ -54,5 +54,19 @@
             "frequency": 1200,
             "delta": 5
         }
+    },
+    "barmeter": {
+        "value": {
+            "start": 12,
+            "end": 55,
+            "frequency": 50,
+            "delta": 0.2
+        },
+        "range": {
+            "start": 100,
+            "end": 100,
+            "frequency": 200000,
+            "delta": 0
+        }
     }
 }

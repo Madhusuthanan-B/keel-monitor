@@ -1,7 +1,22 @@
-.thrusters {
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+button {
+    padding: 0.2em;
+    margin: 0.1em;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin: 1em;
+}
+
+.row {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
     flex-wrap: wrap;
 }
 

@@ -1,7 +1,7 @@
 import { Range } from '../models/range';
 
-export type TypeOfInstument = 'azimuth-thruster' | 'speedometer' | 'cog' | 'rudder';
-export type InstrumentConfiguration = AzimuthThrusterConfiguration | RudderConfiguration | SpeedometerConfiguration | CogConfiguration;
+export type TypeOfInstument = 'azimuth-thruster' | 'speedometer' | 'cog' | 'rudder' | 'barmeter';
+export type InstrumentConfiguration = AzimuthThrusterConfiguration | RudderConfiguration | SpeedometerConfiguration | CogConfiguration | BarMeterConfiguration;
 
 export class AzimuthThrusterConfiguration {
     angle: Range;
@@ -23,11 +23,16 @@ export class RudderConfiguration {
     rudderAngle: Range;
 }
 
+export class BarMeterConfiguration {
+    value: Range;
+}
+
 export class Payload {
     azimuth: AzimuthThrusterConfiguration;
     speedometer: SpeedometerConfiguration;
     cog: CogConfiguration;
     rudder: RudderConfiguration;
+    barmeter: BarMeterConfiguration;
 }
 
 export abstract class InstrumentFactory {
@@ -44,6 +49,8 @@ export abstract class InstrumentFactory {
                 return new CogFactory().getInstrumentConfiguration(payload);
             case 'rudder':
                 return new RudderFactory().getInstrumentConfiguration(payload);
+            case 'barmeter':
+                return new BarMeterFactory().getInstrumentConfiguration(payload);
         }
     }
 }
@@ -70,5 +77,11 @@ export class SpeedometerFactory extends InstrumentFactory {
 export class RudderFactory extends InstrumentFactory {
     getInstrumentConfiguration(payload: Payload): RudderConfiguration {
         return payload.rudder;
+    }
+}
+
+export class BarMeterFactory extends InstrumentFactory {
+    getInstrumentConfiguration(payload: Payload): BarMeterConfiguration {
+        return payload.barmeter;
     }
 }

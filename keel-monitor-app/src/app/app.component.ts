@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AzimuthThrusterConfiguration, AzimuthThrusterFactory, CogConfiguration, CogFactory, InstrumentFactory, RudderConfiguration, RudderFactory, SpeedometerConfiguration, SpeedometerFactory } from './factory/instruments-factory';
+import { AzimuthThrusterConfiguration, AzimuthThrusterFactory, BarMeterConfiguration, CogConfiguration, CogFactory, InstrumentFactory, RudderConfiguration, RudderFactory, SpeedometerConfiguration, SpeedometerFactory } from './factory/instruments-factory';
 import { Theme } from './models/theme';
 import { ConfigFetcherService } from './services/config-fetcher.service';
 import { AzimuthThruster } from './simulators/azimuth-thruster';
 import { CourseOverGround } from './simulators/cog';
+import { BarMeter } from './simulators/meter';
 import { Rudder } from './simulators/rudder';
 import { Speedometer } from './simulators/speedometer';
 
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   speedoMeter: Speedometer;
   rudder: Rudder;
   cog: CourseOverGround;
+  barMeter: BarMeter;
 
   constructor(private configService: ConfigFetcherService) { }
 
@@ -27,6 +29,7 @@ export class AppComponent implements OnInit {
       this.speedoMeter = new Speedometer(InstrumentFactory.getInstrument('speedometer', config) as SpeedometerConfiguration);
       this.rudder = new Rudder(InstrumentFactory.getInstrument('rudder', config) as RudderConfiguration);
       this.cog = new CourseOverGround(InstrumentFactory.getInstrument('cog', config) as CogConfiguration);
+      this.barMeter = new BarMeter(InstrumentFactory.getInstrument('barmeter', config) as BarMeterConfiguration);
       this.startSimulation();
     });
   }
@@ -36,6 +39,7 @@ export class AppComponent implements OnInit {
     this.speedoMeter.startSimulation();
     this.rudder.startSimulation();
     this.cog.startSimulation();
+    this.barMeter.startSimulation();
   }
 
   stopSimulation() {
@@ -43,6 +47,7 @@ export class AppComponent implements OnInit {
     this.speedoMeter.stopSimulation();
     this.rudder.stopSimulation();
     this.cog.stopSimulation();
+    this.barMeter.stopSimulation();
   }
 
 

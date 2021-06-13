@@ -1,38 +1,49 @@
 <h1>Keel Monitor</h1>
 
-<button (click)="applyTheme('bright')">Bright</button>
-<button (click)="applyTheme('day')">Day</button>
-<button (click)="applyTheme('dusk')">Dusk</button>
-<button (click)="applyTheme('night')">Night</button>
+<section class="controls">
+  <section class="themes">
+    <button (click)="applyTheme('day')">Day</button>
+    <button (click)="applyTheme('bright')">Bright</button>
+    <button (click)="applyTheme('dusk')">Dusk</button>
+    <button (click)="applyTheme('night')">Night</button>
+  </section>
+
+  <section class="simulation">
+    <button (click)="startSimulation()">Start Simulation</button>
+    <button (click)="stopSimulation()">Stop Simulation</button>
+  </section>
+</section>
 
 
+<section class="row">
 
-<button (click)="startSimulation()">Start Simulation</button>
-<button (click)="stopSimulation()">Stop Simulation</button>
+  <ob-bar-vertical-large class="size-std" [value]="barMeter.value"></ob-bar-vertical-large>
 
-<section class="thrusters">
   <ob-hdg-large class="size-lg" [courseOverGround]="cog.courseOverGround" [heading]="cog.heading" [northUp]="true">
   </ob-hdg-large>
 
-  <ob-azimuth-large class="size-lg" [angle]="azimuthThruser.angle" [showPortStarboard]="azimuthThruser.showPortStarboard"
-    [showSetPointAngle]="azimuthThruser.showSetPointAngle" [showSetPointValue]="azimuthThruser.showSetPointValue"
-    target="50" [targetAngle]="azimuthThruser.targetAngle" thrusterWidth="REGULAR" [value]="azimuthThruser.value">
-  </ob-azimuth-large>
+  <ob-speedometer-medium class="size-std" [value]="speedoMeter.value"></ob-speedometer-medium>
+  <section class="col">
+    <ob-azimuth-large class="size-lg" [angle]="azimuthThruser.angle"
+      [showPortStarboard]="azimuthThruser.showPortStarboard" [showSetPointAngle]="azimuthThruser.showSetPointAngle"
+      [showSetPointValue]="azimuthThruser.showSetPointValue" target="50" [targetAngle]="azimuthThruser.targetAngle"
+      thrusterWidth="REGULAR" [value]="azimuthThruser.value">
+    </ob-azimuth-large>
+
+  </section>
+
+  <ob-rudder-medium class="size-std" [rudderAngle]="rudder.rudderAngle"
+    [rudderSetPointAngle]="rudder.rudderSetPointAngle" clipAngle="60" showPortStarboard="false" showSetPoint="true">
+  </ob-rudder-medium>
 
   <ob-azimuth-medium class="size-std" [angle]="azimuthThruser.angle"
     [showPortStarboard]="azimuthThruser.showPortStarboard" [showSetPointAngle]="azimuthThruser.showSetPointAngle"
     [showSetPointValue]="azimuthThruser.showSetPointValue" target="50" [targetAngle]="azimuthThruser.targetAngle"
     thrusterWidth="REGULAR" [value]="azimuthThruser.value">
   </ob-azimuth-medium>
-
   <ob-azimuth-small class="size-std" [angle]="azimuthThruser.angle" [value]="azimuthThruser.value">
   </ob-azimuth-small>
 
-  <ob-speedometer-medium class="size-std" [value]="speedoMeter.value"></ob-speedometer-medium>
-
-  <ob-rudder-medium class="size-std" [rudderAngle]="rudder.rudderAngle"
-    [rudderSetPointAngle]="rudder.rudderSetPointAngle" clipAngle="60" showPortStarboard="false" showSetPoint="true">
-  </ob-rudder-medium>
-
+  <ob-bar-horizontal-large class="size-lg" [value]="barMeter.value"></ob-bar-horizontal-large>
 
 </section>

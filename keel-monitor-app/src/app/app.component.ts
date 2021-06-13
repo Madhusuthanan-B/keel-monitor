@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import 'web-component-essentials';
 
 @Component({
   selector: 'app-root',

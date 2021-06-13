@@ -22,6 +22,10 @@ export class AzimuthThruster extends Simulator {
     }
 
     startSimulation() {
+        if (this.isSimulationActive) {
+            this.stopSimulation();
+        }
+        this.isSimulationActive = true;
         this.simulateAngle({ start: 0, end: 360, frequency: 25, delta: 0.1 });
         this.simulateValue({ start: 22, end: 80, frequency: 50, delta: 1 });
     }

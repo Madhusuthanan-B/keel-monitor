@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/openbridge-css/dist/css/openbridge.css",
               "src/styles.scss"
             ],
             "scripts": []

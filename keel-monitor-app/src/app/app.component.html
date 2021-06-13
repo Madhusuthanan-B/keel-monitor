@@ -27,8 +27,11 @@
 
   <ob-speedometer-medium class="size-std" [value]="speedoMeter.value"></ob-speedometer-medium>
 
-  <ob-rudder-medium class="size-std" [rudderAngle]="rudder.rudderAngle" class="mini" [rudderSetPointAngle]="rudder.rudderSetPointAngle" clipAngle="60" showPortStarboard="false"
-  showSetPoint="true"></ob-rudder-medium>
+  <ob-rudder-medium class="size-std" [rudderAngle]="rudder.rudderAngle" class="mini"
+    [rudderSetPointAngle]="rudder.rudderSetPointAngle" clipAngle="60" showPortStarboard="false" showSetPoint="true">
+  </ob-rudder-medium>
+
+  
 
   <!-- <ob-rudder-medium class="size-std">
     [rudderAngle]="40"
@@ -39,5 +42,4 @@
 
 </section>
 
-
-<!-- <ob-bar-horizontal-medium class="mini" range="100" value="50"></ob-bar-horizontal-medium> -->
+<ob-hdg-large class="size-std" [courseOverGround]="cog.courseOverGround" [heading]="cog.heading" [northUp]="true"></ob-hdg-large>
